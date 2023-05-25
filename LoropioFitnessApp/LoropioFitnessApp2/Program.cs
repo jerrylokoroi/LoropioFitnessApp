@@ -14,7 +14,7 @@ Console.WriteLine("Enter the total time spent on the activity in the format HH:M
 string timeTaken = Console.ReadLine();
 TimeSpan time = TimeSpan.Parse(timeTaken);
 
-Console.WriteLine("Enter the date of the activity");
+Console.WriteLine("Enter the date of the activity in the format MM/DD/YY");
 string dateOfActivity = Console.ReadLine();
 DateOnly date = DateOnly.Parse(dateOfActivity);
 
@@ -29,7 +29,7 @@ Console.WriteLine("5. VERY GOOD");
 Console.WriteLine("6. STRONG");
 string afterActivityFeeling = Console.ReadLine();
 
-switch (selectedAction)
+switch (afterActivityFeeling)
 {
     case "1":
         Console.WriteLine("BAD");
@@ -45,7 +45,8 @@ switch (selectedAction)
         break;
     default:
         Console.WriteLine("STRONG");
-
+        break;
+}
 
         Console.WriteLine("\nName of the activity: " + activityName +
     "\nDistance covered: " + distance + " kilometers" +
