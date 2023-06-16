@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.5.33516.290
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LoropioFitnessApp", "LoropioFitnessApp.csproj", "{06ECB010-6C0C-435E-BF99-97167B87EB85}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ConsoleApp1", "ConsoleApp1.csproj", "{F42F6E2A-DD84-4D1B-A6F5-5360CF1E9344}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -11,15 +11,15 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{06ECB010-6C0C-435E-BF99-97167B87EB85}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{06ECB010-6C0C-435E-BF99-97167B87EB85}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{06ECB010-6C0C-435E-BF99-97167B87EB85}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{06ECB010-6C0C-435E-BF99-97167B87EB85}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F42F6E2A-DD84-4D1B-A6F5-5360CF1E9344}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F42F6E2A-DD84-4D1B-A6F5-5360CF1E9344}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F42F6E2A-DD84-4D1B-A6F5-5360CF1E9344}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F42F6E2A-DD84-4D1B-A6F5-5360CF1E9344}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
-		SolutionGuid = {484E1741-5A90-420E-8A65-EF1A2291FC46}
+		SolutionGuid = {3A8744AA-A9E2-4D25-A9D8-5D29BAE5B7BF}
 	EndGlobalSection
 EndGlobal
