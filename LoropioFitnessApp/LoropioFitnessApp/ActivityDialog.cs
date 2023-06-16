@@ -9,12 +9,8 @@ namespace LoropioFitnessApp
     internal class ActivityDialog
     {
 
-        public static void arrayActivities()
-        {
-            string[] validActivities;
 
-            validActivities = new string[4] { "1", "2", "3", "4" };
-        }
+        string[] validActivities = new string[4] { "1", "2", "3", "4" };
 
         public static void EnterActivity()
         {
@@ -70,6 +66,6 @@ namespace LoropioFitnessApp
             "\nHow You Felt After the Activity: " + afterActivityFeeling +
             "\nAverage speed: " + averageSpeed + " KM/h");
         }
-        
+
     }
 }
