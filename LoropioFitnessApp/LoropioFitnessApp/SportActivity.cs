@@ -9,6 +9,9 @@ namespace LoropioFitnessApp
     internal class SportActivity
     {
 
+        public double Distance { get; set; }
+        public DateTime TimeTaken { get; set; }
+
         public static double CalculateAverageSpeedInKmPerHour(double distance, TimeOnly time)
         {
             

@@ -8,11 +8,27 @@ namespace LoropioFitnessApp
 {
     internal class ActivityDialog
     {
+<<<<<<< HEAD
+
+
+        string[] validActivities = new string[4] { "1", "2", "3", "4" };
+
+=======
+>>>>>>> 7c3d23eb8648bfbbcbb68d9b54bf61d2d1e13a6e
+=======
+>>>>>>> 7c3d23eb8648bfbbcbb68d9b54bf61d2d1e13a6e
         public static void EnterActivity()
         {
-            Console.WriteLine("Enter the name of your activity");
+            Console.WriteLine("What type of sports activity do you want to enter ?");
+            Console.WriteLine("1. Bike SportActivity");
+            Console.WriteLine("2. Climb SportActivity");
+            Console.WriteLine("3. Run SportActivity");
+            Console.WriteLine("4. Swim SportActivity");
             string activityName = Console.ReadLine();
 
+<<<<<<< HEAD
+            Console.WriteLine("Enter the total distance covered on the activity in KM");
+=======
             Console.WriteLine("Enter the total distance covered on the activity");
             string distanceCovered = Console.ReadLine();
             double distance = double.Parse(distanceCovered);
