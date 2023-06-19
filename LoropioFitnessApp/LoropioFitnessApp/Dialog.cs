@@ -24,8 +24,6 @@ namespace LoropioFitnessApp
                 switch (userSelection) {
                     case 1:
                         ActivityDialog.EnterActivity();
-                        Console.WriteLine("New sport activity entered successfully!");
-                        // Do something with the new activity, such as saving it or displaying it
                         break;
                     case 2:
                         // Implement view all activities
