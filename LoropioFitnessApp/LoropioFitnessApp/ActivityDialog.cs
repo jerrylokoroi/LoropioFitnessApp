@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -11,7 +12,52 @@ namespace LoropioFitnessApp
         public static void EnterActivity()
         {
             Console.WriteLine("Enter the name of your activity");
+
+        string[] validActivities = new string[4] { "1", "2", "3", "4" };
+
+        private void AddRunActivity(ActivityType activityType)
+        {
+            // This method is blank for now.
+        }
+
+        private void OpenActivityDialog(ActivityType activityType)
+        {
+            switch (activityType)
+            {
+                case ActivityType.Running:
+                    AddRunActivity(activityType);
+                    break;
+                default:
+                    // Do something else.
+                    break;
+            }
+        }
+        public static void EnterActivity()
+        {
+
+            ActivityType activityType;
+
+
+            if (activityTypeInput == null)
+            {
+                return;
+            }
+
+            activityType = (ActivityType)(int.Parse(activityTypeInput));
+
+            OpenActivityDialog(activityType);
+
+            Console.WriteLine("What type of sports activity do you want to enter ?");
+            Console.WriteLine("1. Bike SportActivity");
+            Console.WriteLine("2. Climb SportActivity");
+            Console.WriteLine("3. Run SportActivity");
+            Console.WriteLine("4. Swim SportActivity");
+
             string activityName = Console.ReadLine();
+            //string activityTypeInput = Console.ReadLine();
+
+
+            Console.WriteLine("Enter the total distance covered on the activity in KM");
 
             Console.WriteLine("Enter the total distance covered on the activity");
             string distanceCovered = Console.ReadLine();
@@ -62,5 +108,9 @@ namespace LoropioFitnessApp
             "\nHow You Felt After the Activity: " + afterActivityFeeling +
             "\nAverage speed: " + averageSpeed + " KM/h");
         }
+
+        private void OpenActivityDialog(ActivityType activityType)
+        {
+            // To be Implemented
     }
 }
