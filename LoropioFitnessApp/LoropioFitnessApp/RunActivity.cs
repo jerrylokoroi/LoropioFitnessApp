@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -10,11 +10,14 @@ namespace LoropioFitnessApp
     {
         public double Distance { get; set; }
         public DateTime TimeTaken { get; set; }
+        Feeling Feeling { get; set; }
 
-        public RunActivity(double distance, DateTime timeTaken)
+        public RunActivity(double distance, DateTime timeTaken, Feeling feeling)
         {
             Distance = distance;
             TimeTaken = timeTaken;
+            Feeling = feeling;
         }
     }
 }
+
