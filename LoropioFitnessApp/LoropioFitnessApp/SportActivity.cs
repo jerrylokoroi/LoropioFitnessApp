@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -12,7 +12,6 @@ namespace LoropioFitnessApp
         public static double CalculateAverageSpeedInKmPerHour(double distance, TimeOnly time);
         public double Distance { get; set; }
         public DateTime TimeTaken { get; set; }
-
         Feeling Feeling { get; set; }
 
         public SportActivity(double distance, DateTime timeTaken, Feeling feeling)
