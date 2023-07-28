@@ -28,9 +28,9 @@ namespace LoropioFitnessApp
             return Math.Round(averageSpeedInKmPerHour, 2);
         }
 
-        public double CalculateAverageSpeedMilePerSecond(double distance, TimeOnly time, Feeling feeling)
+        public double CalculateAverageSpeedMilePerSecond()
         {
-            var averageSpeedInMilePerSecond = Distance / (TimeTaken.Hours * 3600) + (TimeTaken.Minutes * 60f) + (TimeTaken.Seconds);
+            var averageSpeedInMilePerSecond = Distance / (TimeTaken.Hours * 3600) + (TimeTaken.Minutes * 60) + (TimeTaken.Seconds);
             return Math.Round(averageSpeedInMilePerSecond, 2);
         }
     }

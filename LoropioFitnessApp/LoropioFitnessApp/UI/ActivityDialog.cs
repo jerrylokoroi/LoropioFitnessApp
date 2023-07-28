@@ -124,7 +124,7 @@ namespace LoropioFitnessApp
 
             var sportActivity = new SportActivity(distance, date, feeling, time);
 
-            var runAcivty = new RunActivity(distance, time, feeling, date);
+            var bikeAcivty = new BikeActivity(distance, time, feeling, date);
 
             Console.WriteLine("Congradulations! You have created a new biking activity.");
 
@@ -139,7 +139,7 @@ namespace LoropioFitnessApp
 
         public static void AddClimbActivity(ActivityType activityType)
         {
-            Console.WriteLine("Enter the total distance covered on the activity in KM");
+            Console.WriteLine("Enter the total distance covered on the activity in Meters");
             string distanceCovered = Console.ReadLine();
             double distance = double.Parse(distanceCovered);
 
@@ -164,7 +164,7 @@ namespace LoropioFitnessApp
 
             var sportActivity = new SportActivity(distance, date, feeling, time);
 
-            var runAcivty = new RunActivity(distance, time, feeling, date);
+            var runAcivty = new ClimbActivity(distance, time, feeling, date);
 
             Console.WriteLine("Congradulations! You have created a new climbing activity.");
 
@@ -173,13 +173,13 @@ namespace LoropioFitnessApp
             "\nTimeTaken: " + time +
             "\nDate of activity: " + date +
             "\nHow You Felt After the Activity: " + afterActivityFeeling +
-            "\nAverage speed: " + sportActivity.CalculateAverageSpeedInKmPerHour()
-            + " KM/h");
+            "\nAverage speed: " + sportActivity.CalculateAverageSpeedMilePerSecond()
+            + " m/s");
         }
 
         public static void AddSwimActivity(ActivityType activityType)
         {
-            Console.WriteLine("Enter the total distance covered on the activity in KM");
+            Console.WriteLine("Enter the total distance covered on the activity in Meters");
             string distanceCovered = Console.ReadLine();
             double distance = double.Parse(distanceCovered);
 
@@ -204,7 +204,7 @@ namespace LoropioFitnessApp
 
             var sportActivity = new SportActivity(distance, date, feeling, time);
 
-            var runAcivty = new RunActivity(distance, time, feeling, date);
+            var swimAcivty = new SwimActivity(distance, time, feeling, date);
 
             Console.WriteLine("Congradulations! You have created a new swimming activity.");
 
@@ -213,8 +213,8 @@ namespace LoropioFitnessApp
             "\nTimeTaken: " + time +
             "\nDate of activity: " + date +
             "\nHow You Felt After the Activity: " + afterActivityFeeling +
-            "\nAverage speed: " + sportActivity.CalculateAverageSpeedInKmPerHour()
-            + " KM/h");
+            "\nAverage speed: " + sportActivity.CalculateAverageSpeedMilePerSecond()
+            + " m/s");
         }
     }
 }

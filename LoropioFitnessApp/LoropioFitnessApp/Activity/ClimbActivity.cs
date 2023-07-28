@@ -9,14 +9,17 @@ namespace LoropioFitnessApp
     internal class ClimbActivity
     {
         public double Distance { get; set; }
-        public DateTime TimeTaken { get; set; }
+        public TimeSpan TimeTaken { get; set; }
         Feeling Feeling { get; set; }
 
-        public ClimbActivity(double distance, DateTime timeTaken, Feeling feeling)
+        public DateOnly Date { get; set; }
+
+        public ClimbActivity(double distance, TimeSpan timeTaken, Feeling feeling, DateOnly date)
         {
             Distance = distance;
             TimeTaken = timeTaken;
             Feeling = feeling;
+            Date = date;
         }
     }
 }
