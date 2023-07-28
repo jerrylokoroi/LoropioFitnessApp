@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace LoropioFitnessApp
+namespace LoropioFitnessApp.UI
 {
     internal class Dialog
     {
@@ -21,7 +21,8 @@ namespace LoropioFitnessApp
 
                 userSelection = int.Parse(Console.ReadLine());
 
-                switch (userSelection) {
+                switch (userSelection)
+                {
                     case 1:
                         ActivityDialog.EnterActivity();
                         break;

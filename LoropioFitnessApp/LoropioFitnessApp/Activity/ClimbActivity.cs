@@ -6,15 +6,17 @@ using System.Threading.Tasks;
 
 namespace LoropioFitnessApp
 {
-    internal class RunActivity
+    internal class ClimbActivity
     {
         public double Distance { get; set; }
         public DateTime TimeTaken { get; set; }
+        Feeling Feeling { get; set; }
 
-        public RunActivity(double distance, DateTime timeTaken)
+        public ClimbActivity(double distance, DateTime timeTaken, Feeling feeling)
         {
             Distance = distance;
             TimeTaken = timeTaken;
+            Feeling = feeling;
         }
     }
 }
