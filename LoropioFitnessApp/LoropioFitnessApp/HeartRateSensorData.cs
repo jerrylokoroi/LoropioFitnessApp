@@ -6,12 +6,7 @@ using System.Threading.Tasks;
 
 namespace LoropioFitnessApp
 {
-    internal enum Feeling
+    internal class HeartRateSensorData
     {
-        Bad = 1,
-        Ok = 2,
-        Good = 3,
-        Strong = 4,
-        VeryStrong = 5
     }
 }
