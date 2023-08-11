@@ -1,4 +1,6 @@
-﻿using System;
+﻿using LoropioFitnessApp.Activity;
+using LoropioFitnessApp.Data;
+using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
@@ -82,22 +84,14 @@ namespace LoropioFitnessApp
 
             Feeling feeling = (Feeling)Enum.Parse(typeof(Feeling), afterActivityFeeling);
 
-            var sportActivity = new SportActivity(distance, date, feeling, time);
+            var runActivity = new RunActivity(distance, time, feeling, date);
 
-            var runAcivty = new RunActivity(distance, time, feeling, date);
+            ActivityRespository.Add(runActivity);
+            Console.WriteLine("New run Activity created");
 
-            Console.WriteLine("Congradulations! You have created a new running activity.");
-
-            Console.WriteLine(
-            "\nDistance covered: " + distance + " kilometers" +
-            "\nTimeTaken: " + time +
-            "\nDate of activity: " + date +
-            "\nHow You Felt After the Activity: " + afterActivityFeeling +
-            "\nAverage speed: " + sportActivity.CalculateAverageSpeedInKmPerHour()
-            +" KM/h");
         }
 
-        public static void AddBikeActivity(ActivityType activityType)
+        private static void AddBikeActivity(ActivityType activityType)
         {
             Console.WriteLine("Enter the total distance covered on the activity in KM");
             string distanceCovered = Console.ReadLine();
@@ -122,19 +116,11 @@ namespace LoropioFitnessApp
 
             Feeling feeling = (Feeling)Enum.Parse(typeof(Feeling), afterActivityFeeling);
 
-            var sportActivity = new SportActivity(distance, date, feeling, time);
+            var bikeActivity = new BikeActivity(distance, date, feeling, time);
 
-            var bikeAcivty = new BikeActivity(distance, time, feeling, date);
+            ActivityRespository.Add(bikeActivity);
+            Console.WriteLine("New Bike Activity created");
 
-            Console.WriteLine("Congradulations! You have created a new biking activity.");
-
-            Console.WriteLine(
-            "\nDistance covered: " + distance + " kilometers" +
-            "\nTimeTaken: " + time +
-            "\nDate of activity: " + date +
-            "\nHow You Felt After the Activity: " + afterActivityFeeling +
-            "\nAverage speed: " + sportActivity.CalculateAverageSpeedInKmPerHour()
-            + " KM/h");
         }
 
         public static void AddClimbActivity(ActivityType activityType)
@@ -162,22 +148,14 @@ namespace LoropioFitnessApp
 
             Feeling feeling = (Feeling)Enum.Parse(typeof(Feeling), afterActivityFeeling);
 
-            var sportActivity = new SportActivity(distance, date, feeling, time);
+            var climbActivity = new ClimbActivity(distance, time, feeling, date);
 
-            var runAcivty = new ClimbActivity(distance, time, feeling, date);
+            ActivityRespository.Add(climbActivity);
+            Console.WriteLine("New Climb Activity created");
 
-            Console.WriteLine("Congradulations! You have created a new climbing activity.");
-
-            Console.WriteLine(
-            "\nDistance covered: " + distance + " kilometers" +
-            "\nTimeTaken: " + time +
-            "\nDate of activity: " + date +
-            "\nHow You Felt After the Activity: " + afterActivityFeeling +
-            "\nAverage speed: " + sportActivity.CalculateAverageSpeedMilePerSecond()
-            + " m/s");
         }
 
-        public static void AddSwimActivity(ActivityType activityType)
+        private static void AddSwimActivity(ActivityType activityType)
         {
             Console.WriteLine("Enter the total distance covered on the activity in Meters");
             string distanceCovered = Console.ReadLine();
@@ -202,19 +180,35 @@ namespace LoropioFitnessApp
 
             Feeling feeling = (Feeling)Enum.Parse(typeof(Feeling), afterActivityFeeling);
 
-            var sportActivity = new SportActivity(distance, date, feeling, time);
+            var swimActivity = new SwimActivity(distance, time, feeling, date);
 
-            var swimAcivty = new SwimActivity(distance, time, feeling, date);
+            ActivityRespository.Add(swimActivity);
+            Console.WriteLine("New Climb Activity created");
 
-            Console.WriteLine("Congradulations! You have created a new swimming activity.");
+        }
 
-            Console.WriteLine(
-            "\nDistance covered: " + distance + " kilometers" +
-            "\nTimeTaken: " + time +
-            "\nDate of activity: " + date +
-            "\nHow You Felt After the Activity: " + afterActivityFeeling +
-            "\nAverage speed: " + sportActivity.CalculateAverageSpeedMilePerSecond()
-            + " m/s");
+        public static void DisplayAllActivities()
+        {
+            Console.WriteLine("********************");
+            Console.WriteLine("* Your Activities  *");
+            Console.WriteLine("********************");
+
+            var allActivities = ActivityRespository.GetAll();
+
+            foreach (var activity in allActivities)
+            {
+                Console.WriteLine($"Activity Name:{activity.GetType().Name};");
+                Console.WriteLine($"Distance:{activity.Distance};");
+                Console.WriteLine($"TimeTaken:{activity.TimeTaken};");
+                Console.WriteLine($"Average Speed:{activity.CalculateAverageSpeedInKmPerHour()};");
+                Console.WriteLine($"Feeling:{activity.Feeling};");
+                Console.WriteLine($"Date:{activity.Date};");
+                Console.WriteLine($"HeartRate:{activity.GetHeartRates()};");
+            }
+
+            Console.WriteLine("Press ENTER to continue \n");
+            while (Console.ReadKey().Key != ConsoleKey.Enter) { };
+            Console.Clear();
         }
     }
 }

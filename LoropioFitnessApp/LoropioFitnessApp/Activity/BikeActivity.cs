@@ -1,3 +1,4 @@
+using LoropioFitnessApp.Activity;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -6,15 +7,9 @@ using System.Threading.Tasks;
 
 namespace LoropioFitnessApp
 {
-    internal class BikeActivity
+    public class BikeActivity : SportActivity
     {
-        public double Distance { get; set; }
-        public TimeSpan TimeTaken { get; set; }
-        Feeling Feeling { get; set; }
-
-        public DateOnly Date { get; set; }
-
-        public BikeActivity(double distance, TimeSpan timeTaken, Feeling feeling, DateOnly date)
+        public BikeActivity(double distance, DateOnly date, Feeling feeling, TimeSpan timeTaken) : base(distance, date, feeling, timeTaken)
         {
             Distance = distance;
             TimeTaken = timeTaken;

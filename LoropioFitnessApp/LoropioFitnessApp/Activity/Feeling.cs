@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace LoropioFitnessApp
 {
-    internal enum Feeling
+    public enum Feeling
     {
         Bad = 1,
         Ok = 2,

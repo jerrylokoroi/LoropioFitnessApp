@@ -27,7 +27,7 @@ namespace LoropioFitnessApp.UI
                         ActivityDialog.EnterActivity();
                         break;
                     case 2:
-                        // Implement view all activities
+                        ActivityDialog.DisplayAllActivities();
                         break;
                     case 3:
                         // Implement load specific sport activity

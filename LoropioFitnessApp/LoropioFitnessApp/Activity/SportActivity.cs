@@ -6,34 +6,62 @@ using System.Threading.Tasks;
 
 namespace LoropioFitnessApp.Activity
 {
-    internal class SportActivity
+    public class SportActivity : ISportActivity
     {
-
-        public static double CalculateAverageSpeedInKmPerHour(double distance, TimeOnly time);
-        public double Distance { get; set; }
-        public DateTime TimeTaken { get; set; }
-        Feeling Feeling { get; set; }
-
-        public SportActivity(double distance, DateTime timeTaken, Feeling feeling)
+        private double _distance;
+        public virtual double Distance 
         {
-
+            get { return _distance; }
+            set { _distance = value; }
         }
 
-        public static double CalculateAverageSpeedInKmPerHour(double distance, TimeOnly time, Feeling feeling)
+        private TimeSpan _timeSpan;
+        public TimeSpan TimeTaken 
         {
-
-            double totalSeconds = time.Hour * 3600 + time.Minute * 60 + time.Second;
-            double totalHours = totalSeconds / 3600;
-            double averageSpeed = distance / totalHours;
-            return Math.Round(averageSpeed, 2);
+            get { return _timeSpan; }
+            set { _timeSpan = value; }
         }
 
-        public static double CalculateAverageSpeedMilePerSecond(double distance, TimeOnly time, Feeling feeling)
+        private DateOnly _date;
+        public DateOnly Date
         {
-            double totalSeconds = time.Hour * 3600 + time.Minute * 60 + time.Second;
-            double distanceInMiles = distance / 1.60934; //Converting KM to Miles
-            double averageSpeed = distanceInMiles / totalSeconds;
-            return Math.Round(averageSpeed, 2);
+            get { return _date; }
+            set { _date = value; }
         }
+
+        private Feeling _feeling;
+        public Feeling Feeling
+        {
+            get { return _feeling; }
+            set { _feeling = value; }
+        }
+
+        public SportActivity(double distance, DateOnly date, Feeling feeling, TimeSpan time)
+        {
+            Distance = distance;
+            Date = date;
+            Feeling = feeling;
+            TimeTaken = time;
+        }
+
+        public string GetHeartRates()
+        {
+            int[] simulatedHeartRates = HeartRateSensorData.SimulateHeartRates(Feeling);
+            return string.Join(" ", simulatedHeartRates);
+        }
+
+        public double CalculateAverageSpeedInKmPerHour()
+        {
+            var averageSpeedInKmPerHours = (Distance / 1000) / (TimeTaken.Hours + (TimeTaken.Minutes / 60) + (TimeTaken.Seconds / 3600));
+            return Math.Round(averageSpeedInKmPerHours, 2);
+        }
+
+        public double CalculateAverageSpeedMilePerSecond()
+        {
+            var averageSpeedInMilesPerSecond = Distance / (TimeTaken.Hours * 3600) + (TimeTaken.Minutes * 60) + TimeTaken.Seconds;
+            return Math.Round(averageSpeedInMilesPerSecond, 2);
+        }
+
+      
     }
 }
