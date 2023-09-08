@@ -3,7 +3,9 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.5.33516.290
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LoropioFitnessApp", "LoropioFitnessApp.csproj", "{307FB8E1-8BA8-436B-B6D0-78D5C943176D}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LoropioFitnessApp", "LoropioFitnessApp.csproj", "{307FB8E1-8BA8-436B-B6D0-78D5C943176D}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LoropioFitnessApp.Tests", "..\LoropioFitnessApp.Tests\LoropioFitnessApp.Tests.csproj", "{30AA90F5-2965-4A43-9EB0-023BD78BB92D}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -15,6 +17,10 @@ Global
 		{307FB8E1-8BA8-436B-B6D0-78D5C943176D}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{307FB8E1-8BA8-436B-B6D0-78D5C943176D}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{307FB8E1-8BA8-436B-B6D0-78D5C943176D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{30AA90F5-2965-4A43-9EB0-023BD78BB92D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{30AA90F5-2965-4A43-9EB0-023BD78BB92D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{30AA90F5-2965-4A43-9EB0-023BD78BB92D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{30AA90F5-2965-4A43-9EB0-023BD78BB92D}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

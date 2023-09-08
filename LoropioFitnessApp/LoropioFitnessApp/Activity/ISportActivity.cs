@@ -8,20 +8,27 @@ namespace LoropioFitnessApp.Activity
 {
     internal interface ISportActivity
     {
-        public double Distance {  get; set; }
+        double Distance {  get; set; }
 
-        public TimeSpan TimeTaken { get; }
+        TimeSpan TimeTaken { get; }
 
-        public DateOnly Date { get;}
+        DateOnly Date { get;}
         
-        public Feeling Feeling { get; }
+        Feeling Feeling { get; }
 
-        public string GetHeartRates();
+        string GetHeartRates();
 
-        public double CalculateAverageSpeedInKmPerHour();
+        double CalculateAverageSpeedInKmPerHour();
 
-        public double CalculateAverageSpeedMilePerSecond();
+        double CalculateAverageSpeedMetersPerSecond();
 
+        double CalculateAverageSpeed();
+
+        string GetVelocityUnit();
+
+        string ShowKMPerHour();
+
+        string ShowMetersPerSecond();
 
     }
 }
