@@ -30,6 +30,8 @@ namespace LoropioFitnessApp.Activity
         }
 
         private Feeling _feeling;
+
+
         public Feeling Feeling
         {
             get { return _feeling; }
@@ -56,12 +58,37 @@ namespace LoropioFitnessApp.Activity
             return Math.Round(averageSpeedInKmPerHours, 2);
         }
 
-        public double CalculateAverageSpeedMilePerSecond()
+        public double CalculateAverageSpeedMetersPerSecond()
         {
-            var averageSpeedInMilesPerSecond = Distance / (TimeTaken.Hours * 3600) + (TimeTaken.Minutes * 60) + TimeTaken.Seconds;
-            return Math.Round(averageSpeedInMilesPerSecond, 2);
+            var averageSpeedInMetersPerSecond = Distance / (TimeTaken.Hours * 3600 + TimeTaken.Minutes * 60 + TimeTaken.Seconds);
+            return Math.Round(averageSpeedInMetersPerSecond, 2);
+        }
+      
+        public virtual double CalculateAverageSpeed()
+        {
+            return CalculateAverageSpeedInKmPerHour();
         }
 
-      
+        public virtual string DistanceUnit => "";
+
+        public virtual string GetVelocityUnit()
+        {
+            return ShowKMPerHour();
+        }
+          
+        public string ShowKMPerHour()
+        {
+            return "Km/H";
+        }
+
+        public string ShowMetersPerSecond()
+        {
+            return "m/s";
+        }
+
+        public virtual double GetActivityDistance()
+        {
+            return _distance;
+        }
     }
 }

@@ -20,8 +20,15 @@ namespace LoropioFitnessApp.Activity
 
         double CalculateAverageSpeedInKmPerHour();
 
-        double CalculateAverageSpeedMilePerSecond();
+        double CalculateAverageSpeedMetersPerSecond();
 
+        double CalculateAverageSpeed();
+
+        string GetVelocityUnit();
+
+        string ShowKMPerHour();
+
+        string ShowMetersPerSecond();
 
     }
 }

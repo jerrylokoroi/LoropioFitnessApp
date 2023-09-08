@@ -10,6 +10,18 @@ namespace LoropioFitnessApp
     internal class SwimActivity : SportActivity
     {
 
+        public override double CalculateAverageSpeed()
+        {
+            return CalculateAverageSpeedMetersPerSecond();
+        }
+
+        public override string DistanceUnit => "M";
+
+        public override string GetVelocityUnit()
+        {
+            return ShowMetersPerSecond();
+        }
+
         public SwimActivity(double distance, TimeSpan timeTaken, Feeling feeling, DateOnly date) : base(distance, date, feeling, timeTaken)
         {
             Distance = distance;

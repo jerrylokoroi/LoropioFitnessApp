@@ -84,7 +84,7 @@ namespace LoropioFitnessApp
 
             Feeling feeling = (Feeling)Enum.Parse(typeof(Feeling), afterActivityFeeling);
 
-            var runActivity = new RunActivity(distance, time, feeling, date);
+            var runActivity = new RunActivity(distance * 1000, time, feeling, date);
 
             ActivityRespository.Add(runActivity);
             Console.WriteLine("New run Activity created");
@@ -101,7 +101,7 @@ namespace LoropioFitnessApp
             string timeTaken = Console.ReadLine();
             TimeSpan time = TimeSpan.Parse(timeTaken);
 
-            Console.WriteLine("Enter the date of the activity in the format MM/DD/YY");
+            Console.WriteLine("Enter the date of the activity in the format YYYY/MM/DD");
             string dateOfActivity = Console.ReadLine();
             DateOnly date = DateOnly.Parse(dateOfActivity);
 
@@ -116,7 +116,7 @@ namespace LoropioFitnessApp
 
             Feeling feeling = (Feeling)Enum.Parse(typeof(Feeling), afterActivityFeeling);
 
-            var bikeActivity = new BikeActivity(distance, date, feeling, time);
+            var bikeActivity = new BikeActivity(distance * 1000, date, feeling, time);
 
             ActivityRespository.Add(bikeActivity);
             Console.WriteLine("New Bike Activity created");
@@ -183,7 +183,7 @@ namespace LoropioFitnessApp
             var swimActivity = new SwimActivity(distance, time, feeling, date);
 
             ActivityRespository.Add(swimActivity);
-            Console.WriteLine("New Climb Activity created");
+            Console.WriteLine("New Swim Activity created");
 
         }
 
@@ -200,7 +200,7 @@ namespace LoropioFitnessApp
                 Console.WriteLine($"Activity Name:{activity.GetType().Name};");
                 Console.WriteLine($"Distance:{activity.Distance};");
                 Console.WriteLine($"TimeTaken:{activity.TimeTaken};");
-                Console.WriteLine($"Average Speed:{activity.CalculateAverageSpeedInKmPerHour()};");
+                Console.WriteLine($"Average Speed:{activity.CalculateAverageSpeed() + " " + activity.GetVelocityUnit()};");
                 Console.WriteLine($"Feeling:{activity.Feeling};");
                 Console.WriteLine($"Date:{activity.Date};");
                 Console.WriteLine($"HeartRate:{activity.GetHeartRates()};");
