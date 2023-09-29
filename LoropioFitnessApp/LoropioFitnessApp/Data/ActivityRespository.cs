@@ -46,7 +46,6 @@ namespace LoropioFitnessApp.Data
         {
             
             return _activityList;
-            LoadActivities();
         }
 
         internal static List<ISportActivity> LoadActivities()
@@ -94,7 +93,6 @@ namespace LoropioFitnessApp.Data
                             
                             continue; 
                     }
-
                    
                     loadedActivities.Add(sportActivity);
                 }

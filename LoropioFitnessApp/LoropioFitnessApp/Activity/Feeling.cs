@@ -14,4 +14,4 @@ namespace LoropioFitnessApp
         Strong = 4,
         VeryStrong = 5
     }
-}
+} 
