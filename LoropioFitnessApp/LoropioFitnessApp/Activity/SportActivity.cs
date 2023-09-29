@@ -90,5 +90,15 @@ namespace LoropioFitnessApp.Activity
         {
             return _distance;
         }
+
+        public override string ToString()
+        {
+            return $"{GetType().Name}|{Distance}|{TimeTaken}|{Feeling}|{Date}";
+        }
+
+        public virtual ReadOnlySpan<char> ToFileString()
+        {
+            return ToString().AsSpan();
+        }
     }
 }

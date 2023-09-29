@@ -11,6 +11,8 @@ namespace LoropioFitnessApp
 {
     internal class ActivityDialog
     {
+        private static List<ISportActivity> activities;
+
         public static void EnterActivity()
         {
 
@@ -69,7 +71,7 @@ namespace LoropioFitnessApp
             string timeTaken = Console.ReadLine();
             TimeSpan time = TimeSpan.Parse(timeTaken);
 
-            Console.WriteLine("Enter the date of the activity in the format MM/DD/YY");
+            Console.WriteLine("Enter the date of the activity in the format YYYY/MM/DD");
             string dateOfActivity = Console.ReadLine();
             DateOnly date = DateOnly.Parse(dateOfActivity);
 
@@ -87,7 +89,10 @@ namespace LoropioFitnessApp
             var runActivity = new RunActivity(distance * 1000, time, feeling, date);
 
             ActivityRespository.Add(runActivity);
-            Console.WriteLine("New run Activity created");
+
+            ActivityRespository.SaveActivities(activities);
+
+            Console.WriteLine("New run Activity created and saved.");
 
         }
 
@@ -119,7 +124,10 @@ namespace LoropioFitnessApp
             var bikeActivity = new BikeActivity(distance * 1000, date, feeling, time);
 
             ActivityRespository.Add(bikeActivity);
-            Console.WriteLine("New Bike Activity created");
+
+            ActivityRespository.SaveActivities(activities);
+
+            Console.WriteLine("New bike Activity created and saved.");
 
         }
 
@@ -133,7 +141,7 @@ namespace LoropioFitnessApp
             string timeTaken = Console.ReadLine();
             TimeSpan time = TimeSpan.Parse(timeTaken);
 
-            Console.WriteLine("Enter the date of the activity in the format MM/DD/YY");
+            Console.WriteLine("Enter the date of the activity in the format YYYY/MM/DD");
             string dateOfActivity = Console.ReadLine();
             DateOnly date = DateOnly.Parse(dateOfActivity);
 
@@ -151,7 +159,10 @@ namespace LoropioFitnessApp
             var climbActivity = new ClimbActivity(distance, time, feeling, date);
 
             ActivityRespository.Add(climbActivity);
-            Console.WriteLine("New Climb Activity created");
+
+            ActivityRespository.SaveActivities(activities);
+
+            Console.WriteLine("New climb Activity created and saved.");
 
         }
 
@@ -165,7 +176,7 @@ namespace LoropioFitnessApp
             string timeTaken = Console.ReadLine();
             TimeSpan time = TimeSpan.Parse(timeTaken);
 
-            Console.WriteLine("Enter the date of the activity in the format MM/DD/YY");
+            Console.WriteLine("Enter the date of the activity in the format YYYY/MM/DD");
             string dateOfActivity = Console.ReadLine();
             DateOnly date = DateOnly.Parse(dateOfActivity);
 
@@ -183,7 +194,10 @@ namespace LoropioFitnessApp
             var swimActivity = new SwimActivity(distance, time, feeling, date);
 
             ActivityRespository.Add(swimActivity);
-            Console.WriteLine("New Swim Activity created");
+
+            ActivityRespository.SaveActivities(activities);
+
+            Console.WriteLine("New swim Activity created and saved.");
 
         }
 
@@ -210,5 +224,110 @@ namespace LoropioFitnessApp
             while (Console.ReadKey().Key != ConsoleKey.Enter) { };
             Console.Clear();
         }
+
+        public static void LoadRunActivity()
+        {
+            var allActivities = ActivityRespository.GetAll().OfType<RunActivity>();
+
+            if (allActivities.Any())
+            {
+                Console.WriteLine("********************");
+                Console.WriteLine("* Run Activities   *");
+                Console.WriteLine("********************");
+
+                foreach (var activity in allActivities)
+                {
+                    Console.WriteLine($"Distance: {activity.Distance} {activity.DistanceUnit};");
+                    Console.WriteLine($"Time Taken: {activity.TimeTaken};");
+                    Console.WriteLine($"Feeling: {activity.Feeling};");
+                    Console.WriteLine($"Date: {activity.Date};");
+                    Console.WriteLine($"Average Speed: {activity.CalculateAverageSpeed()} {activity.GetVelocityUnit()};");
+                    Console.WriteLine($"Heart Rate: {activity.GetHeartRates()};");
+                }
+            }
+            else
+            {
+                Console.WriteLine("No Run Activities found.");
+            }
+        }
+
+        public static void LoadBikeActivity()
+        {
+            var allActivities = ActivityRespository.GetAll().OfType<BikeActivity>();
+
+            if (allActivities.Any())
+            {
+                Console.WriteLine("********************");
+                Console.WriteLine("* Bike Activities  *");
+                Console.WriteLine("********************");
+
+                foreach (var activity in allActivities)
+                {
+                    Console.WriteLine($"Distance: {activity.Distance} {activity.DistanceUnit};");
+                    Console.WriteLine($"Time Taken: {activity.TimeTaken};");
+                    Console.WriteLine($"Feeling: {activity.Feeling};");
+                    Console.WriteLine($"Date: {activity.Date};");
+                    Console.WriteLine($"Average Speed: {activity.CalculateAverageSpeed()} {activity.GetVelocityUnit()};");
+                    Console.WriteLine($"Heart Rate: {activity.GetHeartRates()};");
+                }
+            }
+            else
+            {
+                Console.WriteLine("No Bike Activities found.");
+            }
+        }
+
+        public static void LoadClimbActivity()
+        {
+            var allActivities = ActivityRespository.GetAll().OfType<ClimbActivity>();
+
+            if (allActivities.Any())
+            {
+                Console.WriteLine("********************");
+                Console.WriteLine("* Climb Activities *");
+                Console.WriteLine("********************");
+
+                foreach (var activity in allActivities)
+                {
+                    Console.WriteLine($"Distance: {activity.Distance} {activity.DistanceUnit};");
+                    Console.WriteLine($"Time Taken: {activity.TimeTaken};");
+                    Console.WriteLine($"Feeling: {activity.Feeling};");
+                    Console.WriteLine($"Date: {activity.Date};");
+                    Console.WriteLine($"Average Speed: {activity.CalculateAverageSpeed()} {activity.GetVelocityUnit()};");
+                    Console.WriteLine($"Heart Rate: {activity.GetHeartRates()};");
+                }
+            }
+            else
+            {
+                Console.WriteLine("No Climb Activities found.");
+            }
+        }
+
+        public static void LoadSwimActivity()
+        {
+            var allActivities = ActivityRespository.GetAll().OfType<SwimActivity>();
+
+            if (allActivities.Any())
+            {
+                Console.WriteLine("********************");
+                Console.WriteLine("* Swim Activities  *");
+                Console.WriteLine("********************");
+
+                foreach (var activity in allActivities)
+                {
+                    Console.WriteLine($"Distance: {activity.Distance} {activity.DistanceUnit};");
+                    Console.WriteLine($"Time Taken: {activity.TimeTaken};");
+                    Console.WriteLine($"Feeling: {activity.Feeling};");
+                    Console.WriteLine($"Date: {activity.Date};");
+                    Console.WriteLine($"Average Speed: {activity.CalculateAverageSpeed()} {activity.GetVelocityUnit()};");
+                    Console.WriteLine($"Heart Rate: {activity.GetHeartRates()};");
+                }
+            }
+            else
+            {
+                Console.WriteLine("No Swim Activities found.");
+            }
+        }
+
     }
 }
