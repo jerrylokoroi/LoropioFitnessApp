@@ -1,4 +1,5 @@
 ﻿using LoropioFitnessApp;
+using LoropioFitnessApp.Data;
 using LoropioFitnessApp.UI;
 
 Console.WriteLine("Please enter you name: ");

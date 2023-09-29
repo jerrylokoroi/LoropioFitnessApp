@@ -29,6 +29,6 @@ namespace LoropioFitnessApp.Activity
         string ShowKMPerHour();
 
         string ShowMetersPerSecond();
-
+        /*ReadOnlySpan<char> ToFileString();*/
     }
 }

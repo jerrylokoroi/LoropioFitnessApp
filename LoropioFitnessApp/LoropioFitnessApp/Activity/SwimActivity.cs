@@ -29,5 +29,10 @@ namespace LoropioFitnessApp
             Feeling = feeling;
             Date = date;
         }
+
+        public override ReadOnlySpan<char> ToFileString()
+        {
+            return $"{GetType().Name}|{Distance}|{TimeTaken}|{Feeling}|{Date}".AsSpan();
+        }
     }
 }
