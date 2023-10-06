@@ -10,6 +10,9 @@ namespace LoropioFitnessApp.Data
 {
     internal class ActivityRespository
     {
+        static string directoryPath = @"C:\Data\";
+        static string fileName = "activity_data.txt";
+
         private static readonly List<ISportActivity> _activityList = new ();
 
         public static void Add(ISportActivity sportActivity)
@@ -17,12 +20,12 @@ namespace LoropioFitnessApp.Data
             _activityList.Add(sportActivity);
         }
 
-        internal static void SaveActivities(List<ISportActivity> activities)
+        internal static void SaveActivities()
         {
-            string directoryPath = @"C:\Data\";
-            string fileName = "activity_data.txt";
+            
             string path = $"{directoryPath}{fileName}";
             StringBuilder sb = new StringBuilder();
+            
             foreach (var sportActivity in _activityList)
             {
                 sb.Append($"ActivityName:{sportActivity.GetType().Name};");
@@ -42,17 +45,19 @@ namespace LoropioFitnessApp.Data
             Console.ResetColor();
 
         }
+        
         public static List<ISportActivity> GetAll()
         {
             
-            return _activityList;
+            if (_activityList.Any())
+                return _activityList;
+            return LoadActivities();
         }
 
         internal static List<ISportActivity> LoadActivities()
         {
-            List<ISportActivity> loadedActivities = new List<ISportActivity>();
-            string directoryPath = @"C:\Data\";
-            string fileName = "activity_data.txt";
+           
+
             string path = Path.Combine(directoryPath, fileName);
 
             if (File.Exists(path))
@@ -93,8 +98,8 @@ namespace LoropioFitnessApp.Data
                             
                             continue; 
                     }
-                   
-                    loadedActivities.Add(sportActivity);
+
+                    _activityList.Add(sportActivity);
                 }
             }
             else
@@ -102,7 +107,7 @@ namespace LoropioFitnessApp.Data
                 Console.WriteLine("No activity data found.");
             }
 
-            return loadedActivities;
+            return _activityList;
         }
 
 

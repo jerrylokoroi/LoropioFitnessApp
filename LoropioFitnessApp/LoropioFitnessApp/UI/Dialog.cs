@@ -19,7 +19,7 @@ namespace LoropioFitnessApp.UI
                 Console.WriteLine("Please select an option:");
                 Console.WriteLine("1. Enter new sport activity");
                 Console.WriteLine("2. View all activities");
-                Console.WriteLine("3. Load sport activity");
+                Console.WriteLine("3. Load sport activity by date");
                 Console.WriteLine("4. Quit application");
 
                 userSelection = int.Parse(Console.ReadLine());
@@ -33,7 +33,9 @@ namespace LoropioFitnessApp.UI
                         ActivityDialog.DisplayAllActivities();
                         break;
                     case 3:
-                        ActivityRespository.LoadActivities();
+                        // TM Why is this in ActivityRepository and the calls above go to the ActivityDialog, that does not make sense
+                        //ActivityRespository.LoadActivities();
+                        ActivityDialog.LoadActivityByDate();
                         break;
                     case 4:
                         Console.WriteLine("Thank you for using Loropio Fitness App. Goodbye!");
