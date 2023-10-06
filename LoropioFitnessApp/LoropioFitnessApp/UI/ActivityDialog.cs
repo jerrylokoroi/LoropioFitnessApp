@@ -10,13 +10,15 @@ using System.Threading.Tasks;
 namespace LoropioFitnessApp
 {
     internal class ActivityDialog
+
     {
-        private static List<ISportActivity> activities;
 
         public static void EnterActivity()
         {
 
-            string[] validActivities = new string[4] { "1", "2", "3", "4" };
+            // TM numbers as strings are not activities, here they are options
+            // so validActivityTypeInput would be a better name which matches with the name you are using later
+            string[] validActivityTypeInput = new string[4] { "1", "2", "3", "4" };
 
             Console.WriteLine("What type of sports activity do you want to enter ?");
             Console.WriteLine("1. Bike SportActivity");
@@ -25,6 +27,7 @@ namespace LoropioFitnessApp
             Console.WriteLine("4. Swim SportActivity");
 
             string activityTypeInput = Console.ReadLine();
+
 
             ActivityType activityType;
 
@@ -64,8 +67,8 @@ namespace LoropioFitnessApp
         public static void AddRunActivity(ActivityType activityType)
         {
             Console.WriteLine("Enter the total distance covered on the activity in KM");
-            string distanceCovered = Console.ReadLine();
-            double distance = double.Parse(distanceCovered);
+            string validActivityTypeInput = Console.ReadLine();
+            double distance = double.Parse(validActivityTypeInput);
 
             Console.WriteLine("Enter the total time spent on the activity in the format HH:MM:SS");
             string timeTaken = Console.ReadLine();
@@ -90,7 +93,7 @@ namespace LoropioFitnessApp
 
             ActivityRespository.Add(runActivity);
 
-            ActivityRespository.SaveActivities(activities);
+            ActivityRespository.SaveActivities();
 
             Console.WriteLine("New run Activity created and saved.");
 
@@ -99,8 +102,8 @@ namespace LoropioFitnessApp
         private static void AddBikeActivity(ActivityType activityType)
         {
             Console.WriteLine("Enter the total distance covered on the activity in KM");
-            string distanceCovered = Console.ReadLine();
-            double distance = double.Parse(distanceCovered);
+            string validActivityTypeInput = Console.ReadLine();
+            double distance = double.Parse(validActivityTypeInput);
 
             Console.WriteLine("Enter the total time spent on the activity in the format HH:MM:SS");
             string timeTaken = Console.ReadLine();
@@ -125,8 +128,7 @@ namespace LoropioFitnessApp
 
             ActivityRespository.Add(bikeActivity);
 
-            ActivityRespository.SaveActivities(activities);
-
+            ActivityRespository.SaveActivities();
             Console.WriteLine("New bike Activity created and saved.");
 
         }
@@ -134,8 +136,8 @@ namespace LoropioFitnessApp
         public static void AddClimbActivity(ActivityType activityType)
         {
             Console.WriteLine("Enter the total distance covered on the activity in Meters");
-            string distanceCovered = Console.ReadLine();
-            double distance = double.Parse(distanceCovered);
+            string validActivityTypeInput = Console.ReadLine();
+            double distance = double.Parse(validActivityTypeInput);
 
             Console.WriteLine("Enter the total time spent on the activity in the format HH:MM:SS");
             string timeTaken = Console.ReadLine();
@@ -160,7 +162,7 @@ namespace LoropioFitnessApp
 
             ActivityRespository.Add(climbActivity);
 
-            ActivityRespository.SaveActivities(activities);
+            ActivityRespository.SaveActivities();
 
             Console.WriteLine("New climb Activity created and saved.");
 
@@ -169,8 +171,8 @@ namespace LoropioFitnessApp
         private static void AddSwimActivity(ActivityType activityType)
         {
             Console.WriteLine("Enter the total distance covered on the activity in Meters");
-            string distanceCovered = Console.ReadLine();
-            double distance = double.Parse(distanceCovered);
+            string validActivityTypeInput = Console.ReadLine();
+            double distance = double.Parse(validActivityTypeInput);
 
             Console.WriteLine("Enter the total time spent on the activity in the format HH:MM:SS");
             string timeTaken = Console.ReadLine();
@@ -195,7 +197,7 @@ namespace LoropioFitnessApp
 
             ActivityRespository.Add(swimActivity);
 
-            ActivityRespository.SaveActivities(activities);
+            ActivityRespository.SaveActivities();
 
             Console.WriteLine("New swim Activity created and saved.");
 
@@ -208,21 +210,31 @@ namespace LoropioFitnessApp
             Console.WriteLine("********************");
 
             var allActivities = ActivityRespository.GetAll();
-
-            foreach (var activity in allActivities)
-            {
-                Console.WriteLine($"Activity Name:{activity.GetType().Name};");
-                Console.WriteLine($"Distance:{activity.Distance};");
-                Console.WriteLine($"TimeTaken:{activity.TimeTaken};");
-                Console.WriteLine($"Average Speed:{activity.CalculateAverageSpeed() + " " + activity.GetVelocityUnit()};");
-                Console.WriteLine($"Feeling:{activity.Feeling};");
-                Console.WriteLine($"Date:{activity.Date};");
-                Console.WriteLine($"HeartRate:{activity.GetHeartRates()};");
-            }
+            DisplayActivities(allActivities);
 
             Console.WriteLine("Press ENTER to continue \n");
-            while (Console.ReadKey().Key != ConsoleKey.Enter) { };
-            Console.Clear();
+            if (Console.ReadKey().Key == ConsoleKey.Enter) 
+              Console.Clear();
+        }
+
+        public static void DisplayActivities(List<ISportActivity> activities)
+        {
+           foreach (var activity in activities)
+           {
+               Console.WriteLine($"Activity Name:{activity.GetType().Name};");
+               Console.WriteLine($"Distance:{activity.Distance};");
+               Console.WriteLine($"TimeTaken:{activity.TimeTaken};");
+               Console.WriteLine($"Average Speed:{activity.CalculateAverageSpeed() + " " + activity.GetVelocityUnit()};");
+               Console.WriteLine($"Feeling:{activity.Feeling};");
+               Console.WriteLine($"Date:{activity.Date};");
+               Console.WriteLine($"HeartRate:{activity.GetHeartRates()};");
+           }
+        }
+
+        public static void LoadActivity()
+        {
+            var allActivities = ActivityRespository.GetAll();
+
         }
 
         public static void LoadRunActivity()
@@ -326,6 +338,41 @@ namespace LoropioFitnessApp
             else
             {
                 Console.WriteLine("No Swim Activities found.");
+            }
+        }
+
+        internal static void LoadActivityByDate()
+        {
+            Console.WriteLine("Enter the date of the activity you would like to load (use the format YYYY/MM/DD)");
+            string dateOfActivity = Console.ReadLine();
+            if (DateOnly.TryParse(dateOfActivity, out DateOnly date))
+            {
+                var allActivities = ActivityRespository.LoadActivities();
+
+                var activitiesOnDate = allActivities.Where(activity => activity.Date == date);
+
+                if (activitiesOnDate.Any())
+                {
+                    Console.WriteLine($"Activities on {date}:");
+                    foreach (var activity in activitiesOnDate)
+                    {
+                        Console.WriteLine($"Activity Name:{activity.GetType().Name};");
+                        Console.WriteLine($"Distance:{activity.Distance};");
+                        Console.WriteLine($"TimeTaken:{activity.TimeTaken};");
+                        Console.WriteLine($"Average Speed:{activity.CalculateAverageSpeed() + " " + activity.GetVelocityUnit()};");
+                        Console.WriteLine($"Feeling:{activity.Feeling};");
+                        Console.WriteLine($"Date:{activity.Date};");
+                        Console.WriteLine($"HeartRate:{activity.GetHeartRates()};");
+                    }
+                }
+                else
+                {
+                    Console.WriteLine($"No activities found on {date}.");
+                }
+            }
+            else
+            {
+                Console.WriteLine("Invalid date format. Please use the format YYYY/MM/DD.");
             }
         }
 
