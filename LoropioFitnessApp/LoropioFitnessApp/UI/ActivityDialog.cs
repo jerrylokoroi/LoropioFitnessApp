@@ -16,8 +16,6 @@ namespace LoropioFitnessApp
         public static void EnterActivity()
         {
 
-            // TM numbers as strings are not activities, here they are options
-            // so validActivityTypeInput would be a better name which matches with the name you are using later
             string[] validActivityTypeInput = new string[4] { "1", "2", "3", "4" };
 
             Console.WriteLine("What type of sports activity do you want to enter ?");
@@ -66,140 +64,224 @@ namespace LoropioFitnessApp
 
         public static void AddRunActivity(ActivityType activityType)
         {
-            Console.WriteLine("Enter the total distance covered on the activity in KM");
-            string validActivityTypeInput = Console.ReadLine();
-            double distance = double.Parse(validActivityTypeInput);
+            try
+            {
+                Console.WriteLine("Enter the total distance covered on the activity in KM");
+                string validActivityTypeInput = Console.ReadLine();
+                double distance = double.Parse(validActivityTypeInput);
 
-            Console.WriteLine("Enter the total time spent on the activity in the format HH:MM:SS");
-            string timeTaken = Console.ReadLine();
-            TimeSpan time = TimeSpan.Parse(timeTaken);
+                Console.WriteLine("Enter the total time spent on the activity in the format HH:MM:SS");
+                string timeTaken = Console.ReadLine();
+                TimeSpan time = TimeSpan.Parse(timeTaken);
 
-            Console.WriteLine("Enter the date of the activity in the format YYYY/MM/DD");
-            string dateOfActivity = Console.ReadLine();
-            DateOnly date = DateOnly.Parse(dateOfActivity);
+                Console.WriteLine("Enter the date of the activity in the format YYYY/MM/DD");
+                string dateOfActivity = Console.ReadLine();
+                DateOnly date = DateOnly.Parse(dateOfActivity);
 
 
-            Console.WriteLine("How did you feel after the activity: ");
-            Console.WriteLine("1. BAD");
-            Console.WriteLine("2. OK");
-            Console.WriteLine("4. GOOD");
-            Console.WriteLine("5. VERY GOOD");
-            Console.WriteLine("6. STRONG");
-            string afterActivityFeeling = Console.ReadLine();
+                Console.WriteLine("How did you feel after the activity: ");
+                Console.WriteLine("1. BAD");
+                Console.WriteLine("2. OK");
+                Console.WriteLine("4. GOOD");
+                Console.WriteLine("5. VERY GOOD");
+                Console.WriteLine("6. STRONG");
+                string afterActivityFeeling = Console.ReadLine();
 
-            Feeling feeling = (Feeling)Enum.Parse(typeof(Feeling), afterActivityFeeling);
+                Feeling feeling = (Feeling)Enum.Parse(typeof(Feeling), afterActivityFeeling);
 
-            var runActivity = new RunActivity(distance * 1000, time, feeling, date);
+                var runActivity = new RunActivity(distance * 1000, time, feeling, date);
 
-            ActivityRespository.Add(runActivity);
+                ActivityRespository.Add(runActivity);
 
-            ActivityRespository.SaveActivities();
+                ActivityRespository.SaveActivities();
 
-            Console.WriteLine("New run Activity created and saved.");
+                Console.WriteLine("New run Activity created and saved.");
+            }
+            catch (FormatException ex)
+            {
+                Console.ForegroundColor = ConsoleColor.Red;
+                Console.WriteLine($"Error: {ex.Message}. Please enter a valid number.");
+                Console.ResetColor();
+            }
+            catch (ArgumentNullException ex)
+            {
+                Console.ForegroundColor = ConsoleColor.Red;
+                Console.WriteLine($"Error: {ex.Message}");
+                Console.ResetColor();
+            }
+            catch (Exception ex)
+            {
+                Console.ForegroundColor = ConsoleColor.Red;
+                Console.WriteLine($"Error: {ex.Message}");
+                Console.ResetColor();
+            }
 
         }
 
         private static void AddBikeActivity(ActivityType activityType)
         {
-            Console.WriteLine("Enter the total distance covered on the activity in KM");
-            string validActivityTypeInput = Console.ReadLine();
-            double distance = double.Parse(validActivityTypeInput);
+            try
+            {
+                Console.WriteLine("Enter the total distance covered on the activity in KM");
+                string validActivityTypeInput = Console.ReadLine();
+                double distance = double.Parse(validActivityTypeInput);
 
-            Console.WriteLine("Enter the total time spent on the activity in the format HH:MM:SS");
-            string timeTaken = Console.ReadLine();
-            TimeSpan time = TimeSpan.Parse(timeTaken);
+                Console.WriteLine("Enter the total time spent on the activity in the format HH:MM:SS");
+                string timeTaken = Console.ReadLine();
+                TimeSpan time = TimeSpan.Parse(timeTaken);
 
-            Console.WriteLine("Enter the date of the activity in the format YYYY/MM/DD");
-            string dateOfActivity = Console.ReadLine();
-            DateOnly date = DateOnly.Parse(dateOfActivity);
+                Console.WriteLine("Enter the date of the activity in the format YYYY/MM/DD");
+                string dateOfActivity = Console.ReadLine();
+                DateOnly date = DateOnly.Parse(dateOfActivity);
 
 
-            Console.WriteLine("How did you feel after the activity: ");
-            Console.WriteLine("1. BAD");
-            Console.WriteLine("2. OK");
-            Console.WriteLine("4. GOOD");
-            Console.WriteLine("5. VERY GOOD");
-            Console.WriteLine("6. STRONG");
-            string afterActivityFeeling = Console.ReadLine();
+                Console.WriteLine("How did you feel after the activity: ");
+                Console.WriteLine("1. BAD");
+                Console.WriteLine("2. OK");
+                Console.WriteLine("4. GOOD");
+                Console.WriteLine("5. VERY GOOD");
+                Console.WriteLine("6. STRONG");
+                string afterActivityFeeling = Console.ReadLine();
 
-            Feeling feeling = (Feeling)Enum.Parse(typeof(Feeling), afterActivityFeeling);
+                Feeling feeling = (Feeling)Enum.Parse(typeof(Feeling), afterActivityFeeling);
 
-            var bikeActivity = new BikeActivity(distance * 1000, date, feeling, time);
+                var bikeActivity = new BikeActivity(distance * 1000, date, feeling, time);
 
-            ActivityRespository.Add(bikeActivity);
+                ActivityRespository.Add(bikeActivity);
 
-            ActivityRespository.SaveActivities();
-            Console.WriteLine("New bike Activity created and saved.");
+                ActivityRespository.SaveActivities();
+                Console.WriteLine("New bike Activity created and saved.");
+            }
+            catch (FormatException ex)
+            {
+                Console.ForegroundColor = ConsoleColor.Red;
+                Console.WriteLine($"Error: {ex.Message}. Please enter a valid number.");
+                Console.ResetColor();
+            }
+            catch (ArgumentNullException ex)
+            {
+                Console.ForegroundColor = ConsoleColor.Red;
+                Console.WriteLine($"Error: {ex.Message}");
+                Console.ResetColor();
+            }
+            catch (Exception ex)
+            {
+                Console.ForegroundColor = ConsoleColor.Red;
+                Console.WriteLine($"Error: {ex.Message}");
+                Console.ResetColor();
+            }
 
         }
 
         public static void AddClimbActivity(ActivityType activityType)
         {
-            Console.WriteLine("Enter the total distance covered on the activity in Meters");
-            string validActivityTypeInput = Console.ReadLine();
-            double distance = double.Parse(validActivityTypeInput);
+            try
+            {
+                Console.WriteLine("Enter the total distance covered on the activity in Meters");
+                string validActivityTypeInput = Console.ReadLine();
+                double distance = double.Parse(validActivityTypeInput);
 
-            Console.WriteLine("Enter the total time spent on the activity in the format HH:MM:SS");
-            string timeTaken = Console.ReadLine();
-            TimeSpan time = TimeSpan.Parse(timeTaken);
+                Console.WriteLine("Enter the total time spent on the activity in the format HH:MM:SS");
+                string timeTaken = Console.ReadLine();
+                TimeSpan time = TimeSpan.Parse(timeTaken);
 
-            Console.WriteLine("Enter the date of the activity in the format YYYY/MM/DD");
-            string dateOfActivity = Console.ReadLine();
-            DateOnly date = DateOnly.Parse(dateOfActivity);
+                Console.WriteLine("Enter the date of the activity in the format YYYY/MM/DD");
+                string dateOfActivity = Console.ReadLine();
+                DateOnly date = DateOnly.Parse(dateOfActivity);
 
 
-            Console.WriteLine("How did you feel after the activity: ");
-            Console.WriteLine("1. BAD");
-            Console.WriteLine("2. OK");
-            Console.WriteLine("4. GOOD");
-            Console.WriteLine("5. VERY GOOD");
-            Console.WriteLine("6. STRONG");
-            string afterActivityFeeling = Console.ReadLine();
+                Console.WriteLine("How did you feel after the activity: ");
+                Console.WriteLine("1. BAD");
+                Console.WriteLine("2. OK");
+                Console.WriteLine("4. GOOD");
+                Console.WriteLine("5. VERY GOOD");
+                Console.WriteLine("6. STRONG");
+                string afterActivityFeeling = Console.ReadLine();
 
-            Feeling feeling = (Feeling)Enum.Parse(typeof(Feeling), afterActivityFeeling);
+                Feeling feeling = (Feeling)Enum.Parse(typeof(Feeling), afterActivityFeeling);
 
-            var climbActivity = new ClimbActivity(distance, time, feeling, date);
+                var climbActivity = new ClimbActivity(distance, time, feeling, date);
 
-            ActivityRespository.Add(climbActivity);
+                ActivityRespository.Add(climbActivity);
 
-            ActivityRespository.SaveActivities();
+                ActivityRespository.SaveActivities();
 
-            Console.WriteLine("New climb Activity created and saved.");
+                Console.WriteLine("New climb Activity created and saved.");
+            }
+            catch (FormatException ex)
+            {
+                Console.ForegroundColor = ConsoleColor.Red;
+                Console.WriteLine($"Error: {ex.Message}. Please enter a valid number.");
+                Console.ResetColor();
+            }
+            catch (ArgumentNullException ex)
+            {
+                Console.ForegroundColor = ConsoleColor.Red;
+                Console.WriteLine($"Error: {ex.Message}");
+                Console.ResetColor();
+            }
+            catch (Exception ex)
+            {
+                Console.ForegroundColor = ConsoleColor.Red;
+                Console.WriteLine($"Error: {ex.Message}");
+                Console.ResetColor();
+            }
 
         }
 
         private static void AddSwimActivity(ActivityType activityType)
         {
-            Console.WriteLine("Enter the total distance covered on the activity in Meters");
-            string validActivityTypeInput = Console.ReadLine();
-            double distance = double.Parse(validActivityTypeInput);
+            try
+            {
+                Console.WriteLine("Enter the total distance covered on the activity in Meters");
+                string validActivityTypeInput = Console.ReadLine();
+                double distance = double.Parse(validActivityTypeInput);
 
-            Console.WriteLine("Enter the total time spent on the activity in the format HH:MM:SS");
-            string timeTaken = Console.ReadLine();
-            TimeSpan time = TimeSpan.Parse(timeTaken);
+                Console.WriteLine("Enter the total time spent on the activity in the format HH:MM:SS");
+                string timeTaken = Console.ReadLine();
+                TimeSpan time = TimeSpan.Parse(timeTaken);
 
-            Console.WriteLine("Enter the date of the activity in the format YYYY/MM/DD");
-            string dateOfActivity = Console.ReadLine();
-            DateOnly date = DateOnly.Parse(dateOfActivity);
+                Console.WriteLine("Enter the date of the activity in the format YYYY/MM/DD");
+                string dateOfActivity = Console.ReadLine();
+                DateOnly date = DateOnly.Parse(dateOfActivity);
 
 
-            Console.WriteLine("How did you feel after the activity: ");
-            Console.WriteLine("1. BAD");
-            Console.WriteLine("2. OK");
-            Console.WriteLine("4. GOOD");
-            Console.WriteLine("5. VERY GOOD");
-            Console.WriteLine("6. STRONG");
-            string afterActivityFeeling = Console.ReadLine();
+                Console.WriteLine("How did you feel after the activity: ");
+                Console.WriteLine("1. BAD");
+                Console.WriteLine("2. OK");
+                Console.WriteLine("4. GOOD");
+                Console.WriteLine("5. VERY GOOD");
+                Console.WriteLine("6. STRONG");
+                string afterActivityFeeling = Console.ReadLine();
 
-            Feeling feeling = (Feeling)Enum.Parse(typeof(Feeling), afterActivityFeeling);
+                Feeling feeling = (Feeling)Enum.Parse(typeof(Feeling), afterActivityFeeling);
 
-            var swimActivity = new SwimActivity(distance, time, feeling, date);
+                var swimActivity = new SwimActivity(distance, time, feeling, date);
 
-            ActivityRespository.Add(swimActivity);
+                ActivityRespository.Add(swimActivity);
 
-            ActivityRespository.SaveActivities();
+                ActivityRespository.SaveActivities();
 
-            Console.WriteLine("New swim Activity created and saved.");
+                Console.WriteLine("New swim Activity created and saved.");
+            }
+            catch (FormatException ex)
+            {
+                Console.ForegroundColor = ConsoleColor.Red;
+                Console.WriteLine($"Error: {ex.Message}. Please enter a valid number.");
+                Console.ResetColor();
+            }
+            catch (ArgumentNullException ex)
+            {
+                Console.ForegroundColor = ConsoleColor.Red;
+                Console.WriteLine($"Error: {ex.Message}");
+                Console.ResetColor();
+            }
+            catch (Exception ex)
+            {
+                Console.ForegroundColor = ConsoleColor.Red;
+                Console.WriteLine($"Error: {ex.Message}");
+                Console.ResetColor();
+            }
 
         }
 
@@ -343,36 +425,45 @@ namespace LoropioFitnessApp
 
         internal static void LoadActivityByDate()
         {
-            Console.WriteLine("Enter the date of the activity you would like to load (use the format YYYY/MM/DD)");
-            string dateOfActivity = Console.ReadLine();
-            if (DateOnly.TryParse(dateOfActivity, out DateOnly date))
+            try
             {
-                var allActivities = ActivityRespository.LoadActivities();
-
-                var activitiesOnDate = allActivities.Where(activity => activity.Date == date);
-
-                if (activitiesOnDate.Any())
+                Console.WriteLine("Enter the date of the activity you would like to load (use the format YYYY/MM/DD)");
+                string dateOfActivity = Console.ReadLine();
+                if (DateOnly.TryParse(dateOfActivity, out DateOnly date))
                 {
-                    Console.WriteLine($"Activities on {date}:");
-                    foreach (var activity in activitiesOnDate)
+                    var allActivities = ActivityRespository.LoadActivities();
+
+                    var activitiesOnDate = allActivities.Where(activity => activity.Date == date);
+
+                    if (activitiesOnDate.Any())
                     {
-                        Console.WriteLine($"Activity Name:{activity.GetType().Name};");
-                        Console.WriteLine($"Distance:{activity.Distance};");
-                        Console.WriteLine($"TimeTaken:{activity.TimeTaken};");
-                        Console.WriteLine($"Average Speed:{activity.CalculateAverageSpeed() + " " + activity.GetVelocityUnit()};");
-                        Console.WriteLine($"Feeling:{activity.Feeling};");
-                        Console.WriteLine($"Date:{activity.Date};");
-                        Console.WriteLine($"HeartRate:{activity.GetHeartRates()};");
+                        Console.WriteLine($"Activities on {date}:");
+                        foreach (var activity in activitiesOnDate)
+                        {
+                            Console.WriteLine($"Activity Name:{activity.GetType().Name};");
+                            Console.WriteLine($"Distance:{activity.Distance};");
+                            Console.WriteLine($"TimeTaken:{activity.TimeTaken};");
+                            Console.WriteLine($"Average Speed:{activity.CalculateAverageSpeed() + " " + activity.GetVelocityUnit()};");
+                            Console.WriteLine($"Feeling:{activity.Feeling};");
+                            Console.WriteLine($"Date:{activity.Date};");
+                            Console.WriteLine($"HeartRate:{activity.GetHeartRates()};");
+                        }
+                    }
+                    else
+                    {
+                        Console.WriteLine($"No activities found on {date}.");
                     }
                 }
                 else
                 {
-                    Console.WriteLine($"No activities found on {date}.");
+                    Console.WriteLine("Invalid date format. Please use the format YYYY/MM/DD.");
                 }
             }
-            else
+            catch (Exception ex)
             {
-                Console.WriteLine("Invalid date format. Please use the format YYYY/MM/DD.");
+                Console.ForegroundColor = ConsoleColor.Red;
+                Console.WriteLine($"Error: {ex.Message}");
+                Console.ResetColor();
             }
         }
 
