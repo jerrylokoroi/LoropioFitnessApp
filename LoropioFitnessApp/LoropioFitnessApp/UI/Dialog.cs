@@ -13,7 +13,7 @@ namespace LoropioFitnessApp.UI
 
         public static void StartDialog()
         {
-            int userSelection;
+            string userSelection;
             do
             {
                 Console.WriteLine("Please select an option:");
@@ -22,29 +22,27 @@ namespace LoropioFitnessApp.UI
                 Console.WriteLine("3. Load sport activity by date");
                 Console.WriteLine("4. Quit application");
 
-                userSelection = int.Parse(Console.ReadLine());
+                userSelection = Console.ReadLine();
 
                 switch (userSelection)
                 {
-                    case 1:
+                    case "1":
                         ActivityDialog.EnterActivity();
                         break;
-                    case 2:
+                    case "2":
                         ActivityDialog.DisplayAllActivities();
                         break;
-                    case 3:
-                        // TM Why is this in ActivityRepository and the calls above go to the ActivityDialog, that does not make sense
-                        //ActivityRespository.LoadActivities();
+                    case "3":
                         ActivityDialog.LoadActivityByDate();
                         break;
-                    case 4:
+                    case "4":
                         Console.WriteLine("Thank you for using Loropio Fitness App. Goodbye!");
                         break;
                     default:
                         Console.WriteLine("Invalid selection. Please try again.");
                         break;
                 }
-            } while (userSelection != 4);
+            } while (userSelection != "4");
         }
 
     }
